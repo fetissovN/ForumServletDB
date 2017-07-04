@@ -11,9 +11,9 @@ public interface UserDao {
 
     void deleteUserById(int id);
 
-    User getUserByLogin(String login);
+    User getUserByLogin(String login) throws SQLException;
 
-    User getUserByEmail(String email);
+    User getUserByEmail(String email) throws SQLException;
 
     User getUserById(int id);
 }

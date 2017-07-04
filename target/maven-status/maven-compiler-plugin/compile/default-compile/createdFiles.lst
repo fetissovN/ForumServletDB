@@ -5,8 +5,11 @@ com\nick\forum\dao\user\UserDao.class
 com\nick\forum\entity\User.class
 com\nick\forum\service\user\UserServiceImpl.class
 com\nick\forum\servlets\Home.class
+com\nick\forum\service\message\MessageServiceImpl.class
 com\nick\forum\dao\message\MessageDAOImpl.class
 com\nick\forum\dao\user\UserDaoImpl.class
+com\nick\forum\utils\ErrorString.class
+com\nick\forum\service\message\MessageService.class
 com\nick\forum\entity\Message.class
 com\nick\forum\jdbc\ConnectionPool.class
 com\nick\forum\servlets\Login.class

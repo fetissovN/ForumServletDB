@@ -19,7 +19,7 @@
         <form action="/login" method="post">
             <div class="row column log-in-form">
                 <h4 class="text-center">Log in with you email account</h4>
-                <span style="color: red">${wrongLogin}</span>
+                <span style="color: red">${wrong}</span>
 
                 <label>Nick
                     <input type="text" name="txt_nick" required>

@@ -1,9 +1,12 @@
+C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\service\message\MessageServiceImpl.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\entity\User.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\jdbc\ConnectionPool.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\utils\StringUtils.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\dao\user\UserDaoImpl.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\dao\message\MessageDAO.java
+C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\utils\ErrorString.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\servlets\Login.java
+C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\service\message\MessageService.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\service\user\UserServiceImpl.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\service\user\UserService.java
 C:\Users\Николай\IdeaProjects\ForumServletDB\src\main\java\com\nick\forum\jdbc\ConnectionJDBC.java

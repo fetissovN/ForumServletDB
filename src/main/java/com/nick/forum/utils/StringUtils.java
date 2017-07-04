@@ -8,6 +8,8 @@ public final class StringUtils {
 
 	public static final String NICK = "txt_nick";
 
+	public static final String MESSAGE= "txt_message";
+
 	public static final String EMPTY_STR = "";
 
 	private StringUtils() {
@@ -30,6 +32,11 @@ public final class StringUtils {
             return EMPTY_STR.equals(str.trim());
         }
         return true;
+	}
+
+	public static boolean lettersLimit(int n, String str){
+
+		return str.length()<n;
 	}
 
 	public static boolean isNotBlank(String str) {

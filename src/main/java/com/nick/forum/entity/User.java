@@ -16,6 +16,13 @@ public class User {
     public User() {
     }
 
+    public User(int id, String nick, String email, Date date) {
+        this.id = id;
+        this.nick = nick;
+        this.email = email;
+        this.date = date;
+    }
+
     public String getEmail() {
         return email;
     }

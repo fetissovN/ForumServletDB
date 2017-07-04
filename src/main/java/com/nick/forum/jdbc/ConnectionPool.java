@@ -7,20 +7,22 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class ConnectionPool {
-    private Vector<Connection> availableConns = new Vector<>();
-    private Vector<Connection> usedConns = new Vector<>();
-    private String url;
+    private static final String url = "jdbc:mysql://localhost:3306/servlet_forum?autoReconnect=true&useSSL=false";
+    private static final String userName = "root";
+    private static final String password = "root";
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private Vector<Connection> availableConnections = new Vector<>();
+    private Vector<Connection> usedConnections = new Vector<>();
 
-    public ConnectionPool(String url, String user, String pass, String driver, int initConnCnt) {
+    public ConnectionPool(int initConnCnt) {
         try {
-            Class.forName(driver);
+            Class.forName(this.driver);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.url = url+user+pass;
-        if (availableConns.size()<5){
+        if (getAvailableConnections()<2){
             for (int i = 0; i < initConnCnt; i++) {
-                availableConns.addElement(getConnection());
+                availableConnections.addElement(getConnection());
             }
         }
 
@@ -34,9 +36,7 @@ public class ConnectionPool {
             e.printStackTrace();
         }
         try {
-            conn = DriverManager.getConnection(ConnectionJDBC.getUrl(),
-                    ConnectionJDBC.getUserName(),
-                    ConnectionJDBC.getPassword());
+            conn = DriverManager.getConnection(url, userName, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,27 +45,27 @@ public class ConnectionPool {
 
     public synchronized Connection retrieve() throws SQLException {
         Connection newConn;
-        if (availableConns.size() == 0) {
+        if (getAvailableConnections() == 0) {
             newConn = getConnection();
         } else {
-            newConn = availableConns.lastElement();
-            availableConns.removeElement(newConn);
+            newConn = availableConnections.lastElement();
+            availableConnections.removeElement(newConn);
         }
-        usedConns.addElement(newConn);
+        usedConnections.addElement(newConn);
         return newConn;
     }
 
     public synchronized void putback(Connection c) throws NullPointerException {
         if (c != null) {
-            if (usedConns.removeElement(c)) {
-                availableConns.addElement(c);
+            if (usedConnections.removeElement(c)) {
+                availableConnections.addElement(c);
             } else {
-                throw new NullPointerException("Connection not in the usedConns array");
+                throw new NullPointerException("Connection not in the used connections vector");
             }
         }
     }
 
-    public int getAvailableConnsCnt() {
-        return availableConns.size();
+    public int getAvailableConnections() {
+        return availableConnections.size();
     }
 }
