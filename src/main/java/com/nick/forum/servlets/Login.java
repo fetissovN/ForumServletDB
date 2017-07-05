@@ -24,8 +24,7 @@ public class Login extends HttpServlet {
 
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response,
-                       HttpSession session) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         String nick = request.getParameter(StringUtils.NICK);
@@ -41,7 +40,9 @@ public class Login extends HttpServlet {
                 user.setDate(new Date(System.currentTimeMillis()));
                 userService.saveUser(user);
                 User userNew = userService.getUserByEmail(user.getEmail());
+                HttpSession session = request.getSession();
                 session.setAttribute("user", userNew);
+                session.setMaxInactiveInterval(30*60);
                 response.sendRedirect("/");
             }
         }catch (SQLException e){

@@ -16,7 +16,7 @@ public class MessageServiceImpl implements MessageService{
     }
 
     @Override
-    public List<Message> getListAll() {
-        return null;
+    public List<Message> getListAll() throws SQLException {
+        return messageDAO.getAllMessages();
     }
 }

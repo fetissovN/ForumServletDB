@@ -9,5 +9,5 @@ public interface MessageService {
 
     void save(Message message) throws SQLException;
 
-    List<Message> getListAll();
+    List<Message> getListAll() throws SQLException;
 }

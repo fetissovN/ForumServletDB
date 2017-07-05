@@ -11,7 +11,7 @@ public interface MessageDAO {
 
     void deleteMessageById(int id);
 
-    List<Message> getAllMessages();
+    List<Message> getAllMessages() throws SQLException;
 
     List<Message> getUsersMessages(int idUser);
 }

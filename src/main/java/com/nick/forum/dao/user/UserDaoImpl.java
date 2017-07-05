@@ -18,6 +18,7 @@ public class UserDaoImpl implements UserDao{
             preparedStatement.setString(1,user.getNick());
             preparedStatement.setString(2,user.getEmail());
             preparedStatement.setDate(3, user.getDate());
+            preparedStatement.execute();
         }finally {
             pool.putback(conn);
         }
@@ -30,12 +31,12 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User getUserByLogin(String login) throws SQLException {
-        return getUserBy(1);
+        return getUserBy(1, login);
     }
 
     @Override
     public User getUserByEmail(String email) throws SQLException {
-        return getUserBy(2);
+        return getUserBy(2, email);
     }
 
     @Override
@@ -49,17 +50,14 @@ public class UserDaoImpl implements UserDao{
      * @param fieldName
      * @return
      */
-    public User getUserBy(int fieldName) throws SQLException {
+    public User getUserBy(int fieldName, String name) throws SQLException {
         final String emailScript= "SELECT * FROM users WHERE email=?";
         final String loginScript= "SELECT * FROM users WHERE nick=?";
         String actualScript = null;
-        String name = null;
         if (fieldName==1){
             actualScript=loginScript;
-            name="nick";
         }else if (fieldName==2){
             actualScript=emailScript;
-            name ="email";
         }
 
         Connection conn =  pool.retrieve();

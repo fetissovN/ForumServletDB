@@ -1,11 +1,14 @@
 package com.nick.forum.dao.message;
 
 import com.nick.forum.entity.Message;
+import com.nick.forum.entity.User;
 import com.nick.forum.jdbc.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +38,21 @@ public class MessageDAOImpl implements MessageDAO {
     }
 
     @Override
-    public List<Message> getAllMessages() {
-        return null;
+    public List<Message> getAllMessages() throws SQLException {
+        Connection conn =  pool.retrieve();
+        List<Message> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM users_messages");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                list.add(new Message(resultSet.getInt("user_id"),
+                        resultSet.getString("message"),
+                        resultSet.getDate("message_date")));
+            }
+        }finally {
+            pool.putback(conn);
+        }
+        return list;
     }
 
     @Override
