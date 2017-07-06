@@ -11,9 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Николай on 28.06.2017.
- */
+
 public class MessageDAOImpl implements MessageDAO {
 
     private ConnectionPool pool = new ConnectionPool(5);

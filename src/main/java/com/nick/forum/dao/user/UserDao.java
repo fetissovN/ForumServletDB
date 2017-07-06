@@ -9,7 +9,7 @@ public interface UserDao {
 
     void saveNewUser(User user) throws SQLException;
 
-    void deleteUserById(int id);
+    void deleteUserByEmail(String email) throws SQLException;
 
     User getUserByLogin(String login) throws SQLException;
 

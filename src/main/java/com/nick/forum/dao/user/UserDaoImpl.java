@@ -25,7 +25,15 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void deleteUserById(int id) {
+    public void deleteUserByEmail(String email) throws SQLException {
+        Connection conn =  pool.retrieve();
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM users WHERE email=?");
+            preparedStatement.setString(1,email);
+            preparedStatement.execute();
+        }finally {
+            pool.putback(conn);
+        }
 
     }
 

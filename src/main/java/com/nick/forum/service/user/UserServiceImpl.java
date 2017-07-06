@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class UserServiceImpl implements UserService {
 
-    UserDaoImpl userDao = new UserDaoImpl();
+    private UserDaoImpl userDao = new UserDaoImpl();
 
     @Override
     public void saveUser(User user) throws SQLException {
