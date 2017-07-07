@@ -11,21 +11,31 @@ public class ConnectionPool {
     private static final String userName = "root";
     private static final String password = "root";
     private static final String driver = "com.mysql.jdbc.Driver";
+
     private Vector<Connection> availableConnections = new Vector<>();
     private Vector<Connection> usedConnections = new Vector<>();
 
-    public ConnectionPool(int initConnCnt) {
+    private static ConnectionPool instance = null;
+
+    private ConnectionPool(int initConnCount) {
         try {
             Class.forName(this.driver);
         } catch (Exception e) {
             e.printStackTrace();
         }
         if (getAvailableConnections()<2){
-            for (int i = 0; i < initConnCnt; i++) {
+            for (int i = 0; i < initConnCount; i++) {
                 availableConnections.addElement(getConnection());
             }
         }
 
+    }
+
+    public synchronized static ConnectionPool getInstance(int initConnCount){
+        if (instance==null){
+            instance = new ConnectionPool(initConnCount);
+        }
+        return instance;
     }
 
     private Connection getConnection() {

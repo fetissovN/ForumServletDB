@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MessageDAOImpl implements MessageDAO {
 
-    private ConnectionPool pool = new ConnectionPool(5);
+    private ConnectionPool pool = ConnectionPool.getInstance(5);
 
     @Override
     public void saveMessage(Message message) throws SQLException {

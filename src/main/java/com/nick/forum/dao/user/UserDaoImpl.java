@@ -7,8 +7,7 @@ import com.nick.forum.jdbc.ConnectionPool;
 
 public class UserDaoImpl implements UserDao{
 
-    private ConnectionPool pool = new ConnectionPool(5);
-
+    private ConnectionPool pool = ConnectionPool.getInstance(5);
 
     @Override
     public void saveNewUser(User user) throws SQLException {
