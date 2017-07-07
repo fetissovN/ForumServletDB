@@ -2,6 +2,7 @@ package com.nick.forum.entity;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message implements Comparable<Message>{
 
@@ -11,23 +12,23 @@ public class Message implements Comparable<Message>{
 
     private String message;
 
-    private Date message_date;
+    private Timestamp message_date;
 
 
     public Message() {
     }
 
-    public Message(int userId, String message, Date message_date) {
+    public Message(int userId, String message, Timestamp message_date) {
         this.userId = userId;
         this.message = message;
         this.message_date = message_date;
     }
 
-    public Date getMessage_date() {
+    public Timestamp getMessage_date() {
         return message_date;
     }
 
-    public void setMessage_date(Date message_date) {
+    public void setMessage_date(Timestamp message_date) {
         this.message_date = message_date;
     }
 
@@ -57,9 +58,9 @@ public class Message implements Comparable<Message>{
 
     @Override
     public int compareTo(Message o) {
-        if (this.message_date.after(o.getMessage_date())){
+        if (this.message_date.before(o.getMessage_date())){
             return -1;
-        }else if (this.message_date.before(o.getMessage_date())){
+        }else if (this.message_date.after(o.getMessage_date())){
             return 1;
         }else {
             return 0;

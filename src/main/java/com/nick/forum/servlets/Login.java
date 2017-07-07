@@ -14,10 +14,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 
 @WebServlet(value = "/login")
 public class Login extends HttpServlet {
+    UserServiceImpl userService;
+    public void init(){
+        userService = new UserServiceImpl();
+
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request,response);
@@ -34,10 +40,11 @@ public class Login extends HttpServlet {
         user.setNick(nick);
         user.setEmail(email);
 
-        UserServiceImpl userService = new UserServiceImpl();
         try {
             if (!userService.userExists(user)){
-                user.setDate(new Date(System.currentTimeMillis()));
+                Date date = new Date(System.currentTimeMillis());
+                Timestamp timestamp = new Timestamp(date.getTime());
+                user.setDate(timestamp);
                 userService.saveUser(user);
                 User userNew = userService.getUserByEmail(user.getEmail());
                 HttpSession session = request.getSession();

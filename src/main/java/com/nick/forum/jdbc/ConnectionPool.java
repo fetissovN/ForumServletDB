@@ -55,12 +55,12 @@ public class ConnectionPool {
         return newConn;
     }
 
-    public synchronized void putback(Connection c) throws NullPointerException {
+    public synchronized void putback(Connection c) throws RuntimeException{
         if (c != null) {
             if (usedConnections.removeElement(c)) {
                 availableConnections.addElement(c);
             } else {
-                throw new NullPointerException("Connection not in the used connections vector");
+                throw new RuntimeException("Connection not in the used connections vector");
             }
         }
     }

@@ -2,6 +2,7 @@ package com.nick.forum.entity;
 
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class User {
 
@@ -11,12 +12,12 @@ public class User {
 
     private String email;
 
-    private Date date;
+    private Timestamp date;
 
     public User() {
     }
 
-    public User(int id, String nick, String email, Date date) {
+    public User(int id, String nick, String email, Timestamp date) {
         this.id = id;
         this.nick = nick;
         this.email = email;
@@ -47,11 +48,11 @@ public class User {
         this.nick = nick;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 }

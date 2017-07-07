@@ -9,6 +9,10 @@ import com.nick.forum.utils.StringUtils;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -22,7 +26,11 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "/")
 public class Home extends HttpServlet {
 
-    private MessageServiceImpl messageService = new MessageServiceImpl();
+    private MessageServiceImpl messageService;
+    public void init(){
+        messageService = new MessageServiceImpl();
+    }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
@@ -39,7 +47,12 @@ public class Home extends HttpServlet {
                         Message message = new Message();
                         message.setMessage(messageStr);
                         message.setUserId(user.getId());
-                        message.setMessage_date(new Date(System.currentTimeMillis()));
+
+                        Date date = new Date(System.currentTimeMillis());
+
+                        Timestamp timestamp = new Timestamp(date.getTime());
+
+                        message.setMessage_date(timestamp);
                         try {
                             messageService.save(message);
                             response.sendRedirect("/");

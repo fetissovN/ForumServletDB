@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,9 @@ public class UserDaoImplTest {
     private static final UserDaoImpl userDao = new UserDaoImpl();
     private static final String email = "email@test.com";
     private static final int id = 999;
-    private static final User user = new User(id,"nick",email,new Date(System.currentTimeMillis()));
+    private static Date date = new Date(System.currentTimeMillis());
+    private static Timestamp timestamp = new Timestamp(date.getTime());
+    private static final User user = new User(id,"nick",email,timestamp);
 
     @Test
     public void saveNewUser() throws Exception {

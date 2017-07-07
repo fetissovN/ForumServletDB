@@ -1,5 +1,6 @@
 package com.nick.forum.dao.user;
 
+import java.io.IOException;
 import java.sql.*;
 
 import com.nick.forum.entity.User;
@@ -17,7 +18,7 @@ public class UserDaoImpl implements UserDao{
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO users (nick,email,dateLog) VALUES (?,?,?)");
             preparedStatement.setString(1,user.getNick());
             preparedStatement.setString(2,user.getEmail());
-            preparedStatement.setDate(3, user.getDate());
+            preparedStatement.setTimestamp(3, user.getDate());
             preparedStatement.execute();
         }finally {
             pool.putback(conn);
@@ -25,7 +26,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public void deleteUserByEmail(String email) throws SQLException {
+    public void deleteUserByEmail(String email) throws SQLException, RuntimeException{
         Connection conn =  pool.retrieve();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM users WHERE email=?");
@@ -75,7 +76,10 @@ public class UserDaoImpl implements UserDao{
             preparedStatement.setString(1,name);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
-                user = new User(resultSet.getInt("id"),resultSet.getString("nick"),resultSet.getString("email"),resultSet.getDate("dateLog"));
+                user = new User(resultSet.getInt("id"),
+                        resultSet.getString("nick"),
+                        resultSet.getString("email"),
+                        resultSet.getTimestamp("dateLog"));
             }
         }finally {
             pool.putback(conn);

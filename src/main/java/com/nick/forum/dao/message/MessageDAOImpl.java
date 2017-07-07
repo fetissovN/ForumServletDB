@@ -23,7 +23,7 @@ public class MessageDAOImpl implements MessageDAO {
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO users_messages(message,user_id,message_date) VALUES (?,?,?)");
             preparedStatement.setString(1,message.getMessage());
             preparedStatement.setInt(2,message.getUserId());
-            preparedStatement.setDate(3, message.getMessage_date());
+            preparedStatement.setTimestamp(3, message.getMessage_date());
             preparedStatement.execute();
         }finally {
             pool.putback(conn);
@@ -42,10 +42,10 @@ public class MessageDAOImpl implements MessageDAO {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM users_messages");
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 list.add(new Message(resultSet.getInt("user_id"),
                         resultSet.getString("message"),
-                        resultSet.getDate("message_date")));
+                        resultSet.getTimestamp("message_date")));
             }
         }finally {
             pool.putback(conn);

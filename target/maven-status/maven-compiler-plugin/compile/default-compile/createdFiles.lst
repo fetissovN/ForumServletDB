@@ -1,4 +1,3 @@
-com\nick\forum\jdbc\ConnectionJDBC.class
 com\nick\forum\service\user\UserService.class
 com\nick\forum\utils\StringUtils.class
 com\nick\forum\dao\user\UserDao.class
