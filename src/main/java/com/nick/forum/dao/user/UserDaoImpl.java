@@ -7,6 +7,18 @@ import com.nick.forum.jdbc.ConnectionPool;
 
 public class UserDaoImpl implements UserDao{
 
+    private static UserDaoImpl instance = null;
+
+    private UserDaoImpl() {
+    }
+
+    public synchronized static UserDaoImpl getInstance(){
+        if (instance==null){
+            instance = new UserDaoImpl();
+        }
+        return instance;
+    }
+
     private ConnectionPool pool = ConnectionPool.getInstance(5);
 
     @Override

@@ -8,7 +8,19 @@ import java.util.List;
 
 public class MessageServiceImpl implements MessageService{
 
-    private MessageDAOImpl messageDAO = new MessageDAOImpl();
+    private static MessageServiceImpl instance = null;
+
+    private MessageServiceImpl() {
+    }
+
+    public synchronized static MessageServiceImpl getInstance(){
+        if (instance==null){
+            instance = new MessageServiceImpl();
+        }
+        return instance;
+    }
+
+    private MessageDAOImpl messageDAO = MessageDAOImpl.getInstance();
 
     @Override
     public void save(Message message) throws SQLException {

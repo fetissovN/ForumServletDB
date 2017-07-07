@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class UserDaoImplTest {
 
-    private static final UserDaoImpl userDao = new UserDaoImpl();
+    private static final UserDaoImpl userDao = UserDaoImpl.getInstance();
     private static final String email = "email@test.com";
     private static final int id = 999;
     private static Date date = new Date(System.currentTimeMillis());

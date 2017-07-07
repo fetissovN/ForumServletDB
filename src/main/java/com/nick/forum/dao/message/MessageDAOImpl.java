@@ -10,8 +10,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MessageDAOImpl implements MessageDAO {
+
+    private static MessageDAOImpl instance = null;
+
+    private MessageDAOImpl() {
+
+    }
+
+    public synchronized static MessageDAOImpl getInstance(){
+        if (instance==null){
+            instance = new MessageDAOImpl();
+        }
+        return instance;
+    }
+
+
 
     private ConnectionPool pool = ConnectionPool.getInstance(5);
 

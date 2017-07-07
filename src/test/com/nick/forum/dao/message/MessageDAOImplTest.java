@@ -16,7 +16,7 @@ public class MessageDAOImplTest {
 
     @Before
     public void setUp() throws Exception {
-        messageDAO = new MessageDAOImpl();
+        messageDAO = MessageDAOImpl.getInstance();
     }
 
     @Test

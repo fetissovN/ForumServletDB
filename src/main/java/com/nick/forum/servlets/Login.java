@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
     private UserServiceImpl userService;
 
     public void init(){
-        userService = new UserServiceImpl();
+        userService = UserServiceImpl.getInstance();
 
     }
 

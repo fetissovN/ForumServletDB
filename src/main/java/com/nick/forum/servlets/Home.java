@@ -25,7 +25,7 @@ public class Home extends HttpServlet {
 
     private MessageServiceImpl messageService;
     public void init(){
-        messageService = new MessageServiceImpl();
+        messageService = MessageServiceImpl.getInstance();
     }
 
 
