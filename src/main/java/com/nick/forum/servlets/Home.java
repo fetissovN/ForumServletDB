@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -59,21 +56,22 @@ public class Home extends HttpServlet {
 
                         } catch (SQLException e) {
                             request.setAttribute("wrong", ErrorString.SQL_ERR);
-                            request.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(request,response);
-                            e.printStackTrace();
                         }
                     }else {
                         request.setAttribute("wrong", ErrorString.TOO_LONG);
-                        request.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(request,response);
                     }
                 }else {
                     request.setAttribute("wrong", ErrorString.EMPTY_STR);
-                    request.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(request,response);
                 }
             }
-        } catch (IOException | ServletException e) {
+            if (request.getAttribute("wrong")!=null){
+                request.setAttribute("list",messageService.getListAll());
+                request.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(request,response);
+            }
+        } catch (ServletException | IOException | SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

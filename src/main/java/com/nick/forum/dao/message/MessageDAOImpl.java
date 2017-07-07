@@ -1,7 +1,6 @@
 package com.nick.forum.dao.message;
 
 import com.nick.forum.entity.Message;
-import com.nick.forum.entity.User;
 import com.nick.forum.jdbc.ConnectionPool;
 
 import java.sql.Connection;

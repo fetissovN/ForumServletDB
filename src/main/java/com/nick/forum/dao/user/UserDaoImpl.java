@@ -1,6 +1,5 @@
 package com.nick.forum.dao.user;
 
-import java.io.IOException;
 import java.sql.*;
 
 import com.nick.forum.entity.User;

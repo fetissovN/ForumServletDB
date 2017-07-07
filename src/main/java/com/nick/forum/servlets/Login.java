@@ -19,7 +19,8 @@ import java.sql.Timestamp;
 
 @WebServlet(value = "/login")
 public class Login extends HttpServlet {
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
+
     public void init(){
         userService = new UserServiceImpl();
 

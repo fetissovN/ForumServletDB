@@ -17,31 +17,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean userExists(User user) throws SQLException {
-        if (loginExists(user.getNick())&&emailExists(user.getEmail())){
-            return true;
-        }else {
-            return false;
-        }
+        return loginExists(user.getNick())&&emailExists(user.getEmail());
     }
 
     @Override
     public boolean loginExists(String login) throws SQLException {
-        User user = userDao.getUserByLogin(login);
-        if (user==null){
-            return false;
-        }else {
-            return true;
-        }
+        return userDao.getUserByEmail(login) != null;
     }
 
     @Override
     public boolean emailExists(String email) throws SQLException {
-        User user = userDao.getUserByLogin(email);
-        if (user==null){
-            return false;
-        }else {
-            return true;
-        }
+        return userDao.getUserByEmail(email) != null;
+
     }
 
     @Override

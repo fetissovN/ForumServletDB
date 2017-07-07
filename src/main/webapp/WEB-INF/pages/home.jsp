@@ -29,17 +29,9 @@
         </form>
         <c:forEach items="${list}" var="message">
         <div class="article-row-content">
-            <h1 class="article-row-content-header">${message.message}</h1>
-
+            <h4 class="article-row-content-header">${message.message}</h4>
             <p class="article-row-content-description">${sessionScope.get("user").nick}</p>
-
             <p class="article-row-content-author">${message.message_date}</p>
-            <%--<time class="article-row-content-time" datetime="2008-02-14 20:00">${postMain.postDate}</time>--%>
-            <%--<p id="likeTag" class="article-row-content-author">--%>
-                <%--Likes: ${postMain.like}--%>
-                <%--<a id="like" href="/post/like/${postMain.id}"><img class="logo" src="<c:url value="/resources/images/like-512.png"/>"></a>--%>
-            <%--</p>--%>
-        <%----%>
         </c:forEach>
 </div>
     <div class="large-3 column"></div>
