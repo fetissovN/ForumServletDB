@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class MessageDAOImplTest {
 
-    MessageDAOImpl messageDAO;
+    private MessageDAOImpl messageDAO;
 
     @Before
     public void setUp() throws Exception {
@@ -30,4 +30,21 @@ public class MessageDAOImplTest {
         }
     }
 
+    @Test
+    public void getConns(){
+        for (int i=0;i<100;i++){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        List<Message> list = messageDAO.getAllMessages();
+                        System.out.println(list.size());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            System.out.println("поток "+i);
+        }
+    }
 }

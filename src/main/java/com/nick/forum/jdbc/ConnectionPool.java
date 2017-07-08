@@ -28,7 +28,6 @@ public class ConnectionPool {
                 availableConnections.addElement(getConnection());
             }
         }
-
     }
 
     public synchronized static ConnectionPool getInstance(int initConnCount){
