@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.concurrent.ForkJoinWorkerThread;
 
 import static org.junit.Assert.*;
 

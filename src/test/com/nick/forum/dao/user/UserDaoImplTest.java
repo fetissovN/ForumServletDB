@@ -1,6 +1,7 @@
 package com.nick.forum.dao.user;
 
 import com.nick.forum.entity.User;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -39,6 +40,15 @@ public class UserDaoImplTest {
             assertTrue(true);
         } catch (SQLException e) {
             assertTrue("SQL error delete",false);
+        }
+    }
+
+    @After
+    public void clean(){
+        try {
+            userDao.deleteUserByEmail(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
